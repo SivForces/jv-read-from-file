@@ -1,13 +1,14 @@
 package core.basesyntax;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class FileWork {
-    public Object[] readFromFile(String fileName) {
+    public String[] readFromFile(String fileName) {
         File myFile = new File(fileName);
         List<String> lines;
         try {
@@ -24,7 +25,7 @@ public class FileWork {
         ArrayList<String> result = new ArrayList<>();
         for (String s : split) {
             if (s.startsWith("w")) {
-                    result.add(s);
+                result.add(s);
             }
         }
         Collections.sort(result);
