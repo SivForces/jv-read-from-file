@@ -19,7 +19,7 @@ public class FileWork {
         strings = strings.toLowerCase();
         String[] split = strings.split("\\W+");
         if (split.length == 0) {
-            return null;
+            return (new String[0]);
         }
         ArrayList<String> result = new ArrayList<>();
         for (String s : split) {
