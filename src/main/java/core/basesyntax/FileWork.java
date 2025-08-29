@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileWork {
     public Object[] readFromFile(String fileName) {
-        File myFile = new File("fileName.txt");
+        File myFile = new File(fileName);
         List<String> lines;
         try {
             lines = Files.readAllLines(myFile.toPath());
@@ -18,15 +18,16 @@ public class FileWork {
         String strings = String.join(" ", lines);
         strings = strings.toLowerCase();
         String[] split = strings.split("\\W+");
+        if (split.length == 0) {
+            return null;
+        }
         ArrayList<String> result = new ArrayList<>();
         for (String s : split) {
-            if (s.equals(s.toLowerCase())) {
-                if (s.startsWith("w")) {
+            if (s.startsWith("w")) {
                     result.add(s);
-                }
             }
         }
         Collections.sort(result);
-        return result.toArray();
+        return result.toArray(new String[0]);
     }
 }
