@@ -1,8 +1,32 @@
 package core.basesyntax;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class FileWork {
-    public String[] readFromFile(String fileName) {
-        //write your code here
-        return null;
+    public Object[] readFromFile(String fileName) {
+        File myFile = new File("fileName.txt");
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(myFile.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException("Can't read file");
+        }
+        String strings = String.join(" ", lines);
+        strings = strings.toLowerCase();
+        String[] split = strings.split("\\W+");
+        ArrayList<String> result = new ArrayList<>();
+        for (String s : split) {
+            if (s.equals(s.toLowerCase())) {
+                if (s.startsWith("w")) {
+                    result.add(s);
+                }
+            }
+        }
+        Collections.sort(result);
+        return result.toArray();
     }
 }
